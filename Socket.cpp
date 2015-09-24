@@ -80,7 +80,7 @@ std::string Socket::read(int maxRead) {
         buffSize = maxRead - ret.size();
     }
 
-    while(rd = ::read(socketFd, buffer, buffSize))
+    while((rd = ::read(socketFd, buffer, buffSize)))
     {
         ret += std::string(buffer, rd);
 
@@ -101,7 +101,7 @@ void Socket::write(std::string data) {
     const char* byteArray = data.c_str();
     size_t bytesToWrite = data.size();
     ssize_t wr = 0;
-    while((bytesToWrite != 0))
+    while(bytesToWrite != 0)
     {
         wr = ::write(socketFd, byteArray, bytesToWrite);
 
