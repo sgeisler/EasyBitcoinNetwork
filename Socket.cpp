@@ -67,7 +67,7 @@ int Socket::bytesAvailable() {
 std::string Socket::read(int maxRead) {
     char buffer[256];
     std::string ret;
-    size_t rd = 0;
+    ssize_t rd = 0;
     size_t buffSize = sizeof(buffer);
 
     if((maxRead == 0) || (maxRead > bytesAvailable()))
@@ -101,7 +101,7 @@ void Socket::write(std::string data) {
     const char* byteArray = data.c_str();
     size_t bytesToWrite = data.size();
     ssize_t wr = 0;
-    while(bytesToWrite != 0)
+    while((bytesToWrite != 0))
     {
         wr = ::write(socketFd, byteArray, bytesToWrite);
 
