@@ -10,5 +10,5 @@ file(GLOB SOURCE_FILES
         "*.cpp"
 )
 
-add_library(EasyBitcoinNetworking ${SOURCE_FILES})
-add_executable(EasyBitcoinNetworkingTests ${SOURCE_FILES} ./testing/main.cpp)
+add_library(EasyBitcoinNetwork ${SOURCE_FILES})
+add_executable(EasyBitcoinNetworkTests ${SOURCE_FILES} ./testing/main.cpp)
