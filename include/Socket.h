@@ -7,6 +7,8 @@
 
 #include <string>
 
+#include "ByteArray.h"
+
 class Socket {
 
 public:
@@ -15,8 +17,8 @@ public:
     ~Socket();
 
     int bytesAvailable();
-    std::string read(int maxRead = 0);
-    void write(std::string data);
+    ByteArray read(int maxRead = 0);
+    void write(ByteArray data);
 
     void close();
 

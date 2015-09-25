@@ -64,9 +64,9 @@ int Socket::bytesAvailable() {
     return bytes;
 }
 
-std::string Socket::read(int maxRead) {
+ByteArray Socket::read(int maxRead) {
     char buffer[256];
-    std::string ret;
+    ByteArray ret;
     ssize_t rd = 0;
     size_t buffSize = sizeof(buffer);
 
@@ -82,13 +82,13 @@ std::string Socket::read(int maxRead) {
 
     while((rd = ::read(socketFd, buffer, buffSize)))
     {
-        ret += std::string(buffer, rd);
+        if(rd < 0)
+            throw std::runtime_error("Error: can't read from socket, maybe closed? (req: " + addr + ")" + DBG_INFO);
+
+        ret += ByteArray((unsigned char *)buffer, rd);
 
         if(maxRead == ret.size())
             return ret;
-
-        if(rd < 0)
-            throw std::runtime_error("Error: can't read from socket, maybe closed? (req: " + addr + ")" + DBG_INFO);
 
         if(maxRead - ret.size() < sizeof(buffer))
         {
@@ -97,8 +97,8 @@ std::string Socket::read(int maxRead) {
     }
 }
 
-void Socket::write(std::string data) {
-    const char* byteArray = data.c_str();
+void Socket::write(ByteArray data) {
+    const char* byteArray = (const char *)&(data[0]);
     size_t bytesToWrite = data.size();
     ssize_t wr = 0;
     while(bytesToWrite != 0)
