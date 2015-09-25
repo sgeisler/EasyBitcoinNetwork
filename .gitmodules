@@ -1,0 +1,4 @@
+
+[submodule "EasyBitcoin"]
+	path = EasyBitcoin
+	url = https://github.com/sgeisler/EasyBitcoin.git
