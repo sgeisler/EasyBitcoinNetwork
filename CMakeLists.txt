@@ -4,7 +4,7 @@ project(EasyBitcoinNetworking)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
-include_directories(./include)
+include_directories(./include ./EasyBitcoin/include)
 
 file(GLOB SOURCE_FILES
         "*.cpp"
@@ -12,3 +12,6 @@ file(GLOB SOURCE_FILES
 
 add_library(EasyBitcoinNetwork ${SOURCE_FILES})
 add_executable(EasyBitcoinNetworkTests ${SOURCE_FILES} ./testing/main.cpp)
+
+add_subdirectory(EasyBitcoin)
+target_link_libraries(EasyBitcoinNetwork EasyBitcoin)
