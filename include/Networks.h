@@ -1,0 +1,15 @@
+//
+// Created by sebastian on 04.10.15.
+//
+
+#ifndef EASYBITCOINNETWORKING_NETWORKS_H
+#define EASYBITCOINNETWORKING_NETWORKS_H
+
+enum class Networks : uint32_t {
+    MAINNET = 0xD9B4BEF9,
+    TESTNET = 0xDAB5BFFA,
+    TESTNET3 = 0x0709110B,
+    NAMECOIN = 0xFEB4BEF9
+};
+
+#endif //EASYBITCOINNETWORKING_NETWORKS_H
