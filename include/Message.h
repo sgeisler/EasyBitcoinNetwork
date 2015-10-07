@@ -10,8 +10,8 @@
 class Message
 {
 public:
-    Message(uint32_t network, std::string command)
-            : magic(network), command(command) {};
+    Message(Networks network, std::string command)
+            : magic((uint32_t) network), command(command) {};
 
     ByteArray serialize() const;
 
